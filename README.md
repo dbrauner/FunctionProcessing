@@ -16,7 +16,7 @@ variavel
 [function,interval_begin,interval_end]
 [funtion_type,amount_of_equations,v,w,y,z]
 ```
-- [function] is the real equation to be computed. This parameter must follow the pattern [+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number];[+ or -];[number];[x]^\[number\](how many times desired);
+- [function] is the real equation to be computed. This parameter must follow the pattern [+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number];[+ or -];[number];[x]^\[number\] (how many times desired);
 - [interval_begin] the "a" parameter of the interval;
 - [interval_end] the "b" parameter of the interval;
 - [funtion_type] can be: CON, CRE, DEC, OND, EX+ and EX-;
