@@ -21,4 +21,4 @@ variavel
 - [interval_end] the "b" parameter of the interval;
 - [funtion_type] can be: CON, CRE, DEC, OND, EX+ and EX-;
 - [amount_of_equations] the amount of individual funtions (using always the same [function]);
-- [v,w,y,z] the master uses this parameters to generate the size of the interval for each equation.
+- [v,w,y,z] the master uses these parameters to generatethe interval size of each equation.
