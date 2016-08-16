@@ -16,4 +16,4 @@ variavel
 [function,interval_begin,interval_end]
 [funtion_type,amount_of_equations,v,w,y,z]
 ```
-- [function] is the real equation to be computed. This parameter must to follow the pattern [+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number] (how many times desired). For instance, the input +;5;x^5;+;x^2;+;x^1 represents the equation $5x^5+x^2+x^1$.
+- [function] is the real equation to be computed. This parameter must to follow the pattern [+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number];[+ or -];[number];[x]^[number] (how many times desired). For instance, the input +;5;x^5;+;x^2;+;x^1 represents the equation $$5x^5+x^2+x^1$$.
