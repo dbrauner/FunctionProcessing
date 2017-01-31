@@ -16,7 +16,7 @@ This is a master-slave application that computes the numerical integration of a 
 - "INPUT_FILE": Full path to the application input file;
 - "MASTER_IP": IP of the virtual machine where the master process is;
 - "AMOUNT_OF_INITIAL_SLAVES": Number of initial connections that the master process waits to start computing;
-- "AMOUNT_OF_SLAVES_IN_EACH_OPERATION": Number of sockets the master connect or disconnect in each elasticity operation;
+- "AMOUNT_OF_SLAVES_IN_EACH_OPERATION": Number of sockets the master connects or disconnects in each elasticity operation;
 - "LOG_NAME": The name of the log.
 
 # Application Input
