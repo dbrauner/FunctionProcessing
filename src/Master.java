@@ -48,14 +48,14 @@ public class Master {
         }
     }
     
-    public Master(int porta, int max_sockets, int sockets, String compath, String logpath, String arquivo, String IP, String logname) throws IOException{
+    public Master(int porta, int max_sockets, int sockets, int grain, String compath, String logpath, String arquivo, String IP, String logname) throws IOException{
         master_obj = new ServerSocket(porta);
 	slave_obj = new Socket[max_sockets];
 	origem = new int[max_sockets];
         oos = new ObjectOutputStream[max_sockets];
         ois = new ObjectInputStream[max_sockets];
         this.porta = porta;
-        this.vms_por_host = 2;
+        this.vms_por_host = grain;
         this.sockets = sockets;
         this.maximo_sockets = max_sockets;
         this.compath = compath;

@@ -19,6 +19,7 @@ public class FunctionProcessing {
         
         int port = 40000; //porta de comunicação que será utilizada pelos sockets
         int sockets = 4; //quantidade inicial de sockets (essa é a quantidade inicial de slaves)
+        int elastic_grain = 1;
         int max_sockets = 30; //quantidade máxima de sockets que poderão ser abertos
         String type = ""; //tipo de aplicação que se está executando (master ou slave)
         String ip_master = "";
@@ -30,14 +31,15 @@ public class FunctionProcessing {
         String logpath = "/one/app/logs/"; //diretório que serão salvos os logs
 
         switch (args.length){
-           case 6:
+           case 7:
                 type = "master";
                 compath = args[0];//Linux
                 logpath = args[1];
                 arquivo = args[2];//Linux
                 ip_master = args[3];//Linux
                 sockets = Integer.parseInt(args[4]);//Linux
-                logname = args[5];
+                elastic_grain = Integer.parseInt(args[5]);//Linux
+                logname = args[6];
                 System.out.println("Iniciando processamento tipo MASTER");
                 System.out.println("Diretório compartilhado: " + compath);
                 System.out.println("Arquivo que será processado: " + arquivo);
@@ -57,7 +59,7 @@ public class FunctionProcessing {
         }                
         //Master srv = new Master(arquivo); //processa arquivo sozinho
         if (type.equalsIgnoreCase("master")){
-            Master server = new Master(port, max_sockets, sockets, compath, logpath, arquivo, ip_master, logname);
+            Master server = new Master(port, max_sockets, sockets, elastic_grain, compath, logpath, arquivo, ip_master, logname);
             server.computa();
             //server.resultados();
         } else if (type.equalsIgnoreCase("slave")){
