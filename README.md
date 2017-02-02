@@ -6,7 +6,7 @@ This is a master-slave application that computes the numerical integration of a 
 
 - Download the classes in the directory `\class\`
 - Executing the master: *java -classpath "THE_CLASSPATH" FunctionProcessing "SHARED_DIRECTORY_FOR_MESSAGES" "DIRECTORY_FOR_LOGS" "INPUT_FILE" "MASTER_IP" "AMOUNT_OF_INITIAL_SLAVES" "AMOUNT_OF_SLAVES_IN_EACH_OPERATION" "LOG_NAME"*
-- Executing the slaves: *java -classpath "THE_CLASSPATH" FunctionProcessing "SHARED_DIRECTORY_FOR_MESSAGES"*
+- Executing the slaves: *java -classpath "THE_CLASSPATH" FunctionProcessing "SHARED_DIRECTORY_FOR_MESSAGES" "DIRECTORY_FOR_LOGS"*
 
 # Parameters
 
