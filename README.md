@@ -4,13 +4,13 @@ This is a master-slave application that computes the numerical integration of a 
 
 # Instructions
 
-- Download the classes in the directory `\class\`
+- Download the classes in the directory `/class/`
 - Executing the master: *java -classpath "THE_CLASSPATH" FunctionProcessing "SHARED_DIRECTORY_FOR_MESSAGES" "DIRECTORY_FOR_LOGS" "INPUT_FILE" "MASTER_IP" "AMOUNT_OF_INITIAL_SLAVES" "AMOUNT_OF_SLAVES_IN_EACH_OPERATION" "LOG_NAME"*
 - Executing the slaves: *java -classpath "THE_CLASSPATH" FunctionProcessing "SHARED_DIRECTORY_FOR_MESSAGES" "DIRECTORY_FOR_LOGS"*
 
 # Parameters
 
-- "THE_CLASSPATH": Path where the classes (`\class\`) are;
+- "THE_CLASSPATH": Path where the classes (`/class/`) are;
 - "SHARED_DIRECTORY_FOR_MESSAGES": Path where the master and slave processes check for messages (files);
 - "DIRECTORY_FOR_LOGS": Path where master and slave save logs;
 - "INPUT_FILE": Full path to the application input file;
@@ -21,7 +21,7 @@ This is a master-slave application that computes the numerical integration of a 
 
 # Application Input
 
-The master process reads a file with the function and its parameters. The current version suports six different application patterns and two different types of input files ("variavel" and "fixo"). The directory `\jobs\` contains six files with parameters for the supported patterns. The type of this input files are "variavel" since it's easier to manipulate these files and customize the parameters. Here is a descrition of an "variavel" input file:
+The master process reads a file with the function and its parameters. The current version suports six different application patterns and two different types of input files ("variavel" and "fixo"). The directory `/jobs/` contains six files with parameters for the supported patterns. The type of this input files are "variavel" since it's easier to manipulate these files and customize the parameters. Here is a descrition of an "variavel" input file:
 
 ```
 variavel
