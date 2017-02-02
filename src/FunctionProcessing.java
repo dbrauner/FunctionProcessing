@@ -29,7 +29,8 @@ public class FunctionProcessing {
         String arquivo = "/one/app/jobs/func.txt"; //Linux aquivo que será processado
         String compath = "/one/app/msg/"; //Linux diretório de comunicação onde a aplicação verificará a utilização de recursos
         String logpath = "/one/app/logs/"; //diretório que serão salvos os logs
-
+        System.out.println("Quantidade de parâmetros: " + args.length);
+        
         switch (args.length){
            case 7:
                 type = "master";
