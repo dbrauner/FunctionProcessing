@@ -14,7 +14,7 @@ public class Master {
     int sockets;	
     int maximo_sockets;
     int porta;
-    int vms_por_host;
+    int vms_per_operation;
     private ArrayList<Job> Jobs;
     
     int[] origem;
@@ -55,7 +55,7 @@ public class Master {
         oos = new ObjectOutputStream[max_sockets];
         ois = new ObjectInputStream[max_sockets];
         this.porta = porta;
-        this.vms_por_host = grain;
+        this.vms_per_operation = grain;
         this.sockets = sockets;
         this.maximo_sockets = max_sockets;
         this.compath = compath;
@@ -358,21 +358,18 @@ public class Master {
                 //tem novo recurso...incremento um socket a mais
                 logTemposConecta = logTemposConecta + "\n" + nrojob + ";" + System.currentTimeMillis(); //tempo quando identificado que novas conexões irão ocorrer
                 fList[x].delete();
-                this.sockets = this.sockets + this.vms_por_host;
+                this.sockets = this.sockets + this.vms_per_operation;
             } else if (nomearquivo.equalsIgnoreCase("poucacarga.txt")){                
                 logTemposDesconecta = logTemposDesconecta + nrojob + ";" + System.currentTimeMillis(); //tempo 1: antes de iniciar as desconexões
                 fList[x].delete();
                 Job job = new Job("quit"); //vou enviar um quit para os dois ultimos processos
-                this.sockets--;
-                oos[this.sockets].writeObject(job); //envia quit para ultimo processo
-                oos[this.sockets].close();
-                ois[this.sockets].close();
-                slave_obj[this.sockets].close();
-                this.sockets--;
-                oos[this.sockets].writeObject(job); //envia quit para penultimo processo
-                oos[this.sockets].close();
-                ois[this.sockets].close();
-                slave_obj[this.sockets].close();
+                for (int i = 0; i < this.vms_per_operation; i++){
+                    this.sockets--;
+                    oos[this.sockets].writeObject(job);
+                    oos[this.sockets].close();
+                    ois[this.sockets].close();
+                    slave_obj[this.sockets].close();
+                }                
                 File arquivo = new File(compath);
                 arquivo = new File(compath + "liberarecurso.txt");
                 BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo));
