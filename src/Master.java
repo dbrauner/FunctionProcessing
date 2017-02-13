@@ -145,81 +145,117 @@ public class Master {
         //str_split[5] = param_z
         str = in.readLine();
         str_split = str.split(","); //divide a linha pelas vírgulas
-        if (str_split[0].equalsIgnoreCase("con")) {
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                int tamanho = Integer.parseInt(str_split[2]);
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              tamanho
-                          );//cria job passando tamanho constante
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CONSTANTE");
-        } else if (str_split[0].equalsIgnoreCase("cre")){
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              interval.gera_intervalo(i, 
-                                                      Double.parseDouble(str_split[4]), 
-                                                      Integer.parseInt(str_split[5])));//cria job passando os intervalos e calculando qual vai ser a quantidade de cálculos
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CRESCENTE");
-        } else if (str_split[0].equalsIgnoreCase("dec")){
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              interval.gera_intervalo(i, 
-                                                      Float.parseFloat(str_split[3]), 
-                                                      Double.parseDouble(str_split[4]), 
-                                                      Integer.parseInt(str_split[5])));
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo DECRESCENTE");
-        } else if (str_split[0].equalsIgnoreCase("ond")){
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              interval.gera_intervalo(i,
-                              Double.parseDouble(str_split[2]), 
-                              Float.parseFloat(str_split[3]), 
-                              Double.parseDouble(str_split[4]), 
-                              Integer.parseInt(str_split[5])));
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo ONDA");
-        } else if (str_split[0].equalsIgnoreCase("ex+")){
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              interval.gera_intervalo(i,
-                              Double.parseDouble(str_split[2]),
-                              Float.parseFloat(str_split[3]), 
-                              Double.parseDouble(str_split[4]), 
-                              Integer.parseInt(str_split[5]),
-                              "ex+"));
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL+");
-        } else if (str_split[0].equalsIgnoreCase("ex-")){
-            for (int i = 1; i <= Integer.parseInt(str_split[1]); i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
-                job = new Job(interval_ini, 
-                              interval_fim, 
-                              interval.gera_intervalo(i,
-                              Double.parseDouble(str_split[2]),
-                              Float.parseFloat(str_split[3]), 
-                              Double.parseDouble(str_split[4]), 
-                              Integer.parseInt(str_split[5]),
-                              "ex-"));
-                job.add_funcao(function); //adiciona função ao job
-                tarefas.add(job); //adiciona job a lista
-            }
-            System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL-");
+        int totaljobs = Integer.parseInt(str_split[1]);
+        switch (str_split[0].toLowerCase()) {
+            case "con":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    int tamanho = Integer.parseInt(str_split[2]);
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  tamanho
+                              );//cria job passando tamanho constante
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CONSTANTE");
+                break;
+            case "cre":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateAscending(i, 
+                                                          Double.parseDouble(str_split[4]), 
+                                                          Integer.parseInt(str_split[5])));//cria job passando os intervalos e calculando qual vai ser a quantidade de cálculos
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CRESCENTE");
+                break;
+            case "dec":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateDescending(i, 
+                                                          Float.parseFloat(str_split[3]), 
+                                                          Double.parseDouble(str_split[4]), 
+                                                          Integer.parseInt(str_split[5])));
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo DECRESCENTE");
+                break;
+            case "ond":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateWave(i,
+                                  Double.parseDouble(str_split[2]), 
+                                  Float.parseFloat(str_split[3]), 
+                                  Double.parseDouble(str_split[4]), 
+                                  Integer.parseInt(str_split[5])));
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo ONDA");
+                break;
+            case "ex+":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateExponential(i,
+                                  Double.parseDouble(str_split[2]),
+                                  Float.parseFloat(str_split[3]), 
+                                  Double.parseDouble(str_split[4]), 
+                                  Integer.parseInt(str_split[5]),
+                                  "ex+"));
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL+");
+                break;
+            case "ex-":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateExponential(i,
+                                  Double.parseDouble(str_split[2]),
+                                  Float.parseFloat(str_split[3]), 
+                                  Double.parseDouble(str_split[4]), 
+                                  Integer.parseInt(str_split[5]),
+                                  "ex-"));
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL-");
+                break;
+             case "rdm0":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateRandomAll());
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo RANDOM ALL");
+                break;
+             case "rdm1":
+                for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
+                    job = new Job(interval_ini, 
+                                  interval_fim, 
+                                  interval.generateRandomAndConstant(i, totaljobs, Integer.parseInt(str_split[2])));
+                    job.add_funcao(function); //adiciona função ao job
+                    tarefas.add(job); //adiciona job a lista
+                    System.out.println(i + ";" + job.get_qtde_slices());
+                }
+                System.out.println("Lidas " + tarefas.size() + " tarefas do tipo RANDOM/CONSTANTE");
+                break;
         }
         return tarefas;
     }

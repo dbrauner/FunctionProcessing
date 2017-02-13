@@ -5,6 +5,7 @@
 
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  *
@@ -53,7 +54,7 @@ public class FunctionProcessing {
                 System.out.println("Diretório compartilhado: " + compath);
                 break;
             default: 
-                System.out.println("Parâmetros inválidos");
+                System.out.println("Parâmetros inválidos.");
                 //type = "slave";
                 System.exit(0);
         }                
