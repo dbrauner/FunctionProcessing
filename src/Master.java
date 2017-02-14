@@ -146,8 +146,17 @@ public class Master {
         str = in.readLine();
         str_split = str.split(","); //divide a linha pelas vírgulas
         int totaljobs = Integer.parseInt(str_split[1]);
-        switch (str_split[0].toLowerCase()) {
-            case "con":
+        int functionid = 0;
+        if(str_split[0].equalsIgnoreCase("con")){functionid = 0;}
+        else if(str_split[0].equalsIgnoreCase("cre")){functionid = 1;}
+        else if(str_split[0].equalsIgnoreCase("dec")){functionid = 2;}
+        else if(str_split[0].equalsIgnoreCase("ond")){functionid = 3;}
+        else if(str_split[0].equalsIgnoreCase("ex+")){functionid = 4;}
+        else if(str_split[0].equalsIgnoreCase("ex-")){functionid = 5;}
+        else if(str_split[0].equalsIgnoreCase("rd0")){functionid = 6;}
+        else if(str_split[0].equalsIgnoreCase("rd1")){functionid = 7;}
+        switch (functionid) {
+            case 0:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     int tamanho = Integer.parseInt(str_split[2]);
                     job = new Job(interval_ini, 
@@ -160,7 +169,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CONSTANTE");
                 break;
-            case "cre":
+            case 1:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -173,7 +182,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo CRESCENTE");
                 break;
-            case "dec":
+            case 2:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -187,7 +196,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo DECRESCENTE");
                 break;
-            case "ond":
+            case 3:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -202,7 +211,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo ONDA");
                 break;
-            case "ex+":
+            case 4:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -218,7 +227,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL+");
                 break;
-            case "ex-":
+            case 5:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -234,7 +243,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo EXPONENCIAL-");
                 break;
-             case "rdm0":
+             case 6:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -245,7 +254,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo RANDOM ALL");
                 break;
-             case "rdm1":
+             case 7:
                 for (int i = 1; i <= totaljobs; i++){ //considerando a quantidade de execuções informadas vamos criar uma tarefa para cada um calculando quantos cálculos realizar para cada um conforme a função informada
                     job = new Job(interval_ini, 
                                   interval_fim, 
@@ -256,7 +265,7 @@ public class Master {
                 }
                 System.out.println("Lidas " + tarefas.size() + " tarefas do tipo RANDOM/CONSTANTE");
                 break;
-        }
+        } 
         return tarefas;
     }
     
