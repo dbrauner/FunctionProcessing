@@ -10,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Master {
+
+    private int PORTA_HOST = 4000;
     
     int sockets;	
     int maximo_sockets;
@@ -49,7 +51,7 @@ public class Master {
     }
     
     public Master(int porta, int max_sockets, int sockets, int grain, String compath, String logpath, String arquivo, String IP, String logname) throws IOException{
-        master_obj = new ServerSocket(porta);
+        master_obj = new ServerSocket(PORTA_HOST); //porta dentro do container é redirecionada para uma porta do HOST
 	slave_obj = new Socket[max_sockets];
 	origem = new int[max_sockets];
         oos = new ObjectOutputStream[max_sockets];
@@ -304,7 +306,7 @@ public class Master {
                     arquivo = new File(compath + "serverok.txt");
                     escritor = new BufferedWriter(new FileWriter(arquivo));
                     //escritor.write(myip());
-                    escritor.write(this.ip);
+                    escritor.write(this.ip + ":" + this.porta);
                     escritor.close();
                 } catch (IOException ex) {Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);}
                 System.out.println("Aguardando conexão " + skts);

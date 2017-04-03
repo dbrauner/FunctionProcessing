@@ -42,6 +42,7 @@ public class FunctionProcessing {
                 sockets = Integer.parseInt(args[4]);//Linux
                 elastic_grain = Integer.parseInt(args[5]);//Linux
                 logname = args[6];
+                port = Integer.parseInt(args[7]);
                 System.out.println("Iniciando processamento tipo MASTER");
                 System.out.println("Diretório compartilhado: " + compath);
                 System.out.println("Arquivo que será processado: " + arquivo);

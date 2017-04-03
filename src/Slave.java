@@ -49,7 +49,10 @@ public class Slave {
                 if (fList[x].getName().equals("serverok.txt")){
                     //se tem arquivo liberando conexão leio ele e libero
                     BufferedReader in = new BufferedReader(new FileReader(compath + "serverok.txt"));
-                    this.ip_servidor = in.readLine();
+                    String connection = in.readLine();
+                    this.ip_servidor = connection.substring(0, connection.indexOf(":"));
+                    this.porta = Integer.parseInt(connection.substring(connection.indexOf(":") + 1));
+                    //this.ip_servidor = in.readLine();
                     in.close();                    
                     fList[x].delete();
                     bloqueado = false;
