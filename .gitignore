@@ -2,6 +2,9 @@
 /nbproject/private/
 /build/
 /dist/
+/.idea
 /out
 /nbproject
-;class
+/class
+**/*.class
+/*.iml

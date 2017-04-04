@@ -33,7 +33,8 @@ public class FunctionProcessing {
         System.out.println("Quantidade de parâmetros: " + args.length);
         
         switch (args.length){
-           case 7:
+            case 7:
+            case 8:
                 type = "master";
                 compath = args[0];//Linux
                 logpath = args[1];
@@ -42,7 +43,8 @@ public class FunctionProcessing {
                 sockets = Integer.parseInt(args[4]);//Linux
                 elastic_grain = Integer.parseInt(args[5]);//Linux
                 logname = args[6];
-                port = Integer.parseInt(args[7]);
+                if (args.length == 8)
+                    port = Integer.parseInt(args[7]);
                 System.out.println("Iniciando processamento tipo MASTER");
                 System.out.println("Diretório compartilhado: " + compath);
                 System.out.println("Arquivo que será processado: " + arquivo);
